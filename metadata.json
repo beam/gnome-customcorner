@@ -2,5 +2,6 @@
     "shell-version": ["3.16", "3.18"],
     "name": "CustomCorner",
     "description": "Configure custom screen Hot Corners for opening apps, showing the overview, showing the desktop, or running commands. Inspired by the discontinued HotCornDog extension.",
+    "url": "https://gitlab.com/eccheng/customcorner",
     "uuid": "customcorner@eccheng.gitlab.com"
 }
