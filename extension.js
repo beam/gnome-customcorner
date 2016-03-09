@@ -132,10 +132,12 @@ function openApp(app) {
 function runCommand(command) {
     // We don't give the command full shell capabilities, but we do basic tilde
     // expansion. (This doesn't support the less-common ~user/ syntax.)
-    let cmdArray = command.replace(/~/g, GLib.get_home_dir()).trim().split(/\s+/);
-    if (!cmdArray.length) return;
-    // Spawn the process.
+    let cmdString = command.replace(/~/g, GLib.get_home_dir()).trim();
     try {
+        // Parse string into command array.
+        let cmdArray = GLib.shell_parse_argv(cmdString)[1];
+        if (!cmdArray.length) return;
+        // Spawn the process.
         let proc = GLib.spawn_async_with_pipes(null, cmdArray, null,
                                                GLib.SpawnFlags.SEARCH_PATH, null);
         // Redirect the process' stderr to our log file.
