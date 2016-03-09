@@ -25,8 +25,9 @@ let _sig_enter_id = {}, _sig_leave_id = {};
 let _oldShouldToggle;
 
 let settings;
-let actor;
 let errlog;
+let actor;
+let wrapLeft, wrapRight;
 
 function init() {}
 
@@ -208,6 +209,9 @@ function enable() {
     });
     actor.add_constraint(new Layout.MonitorConstraint({primary: true, work_area: true}));
     Main.layoutManager.addChrome(actor, {affectsInputRegion: false});
+    // When the actor has a clip, it somehow breaks drag-and-drop funcionality in
+    // the overview. We remove the actor's clip to avoid this.
+    actor.set_clip(0, 0, 0, 0);
 
     // Create 'wrappers' for bottom hot corners.
     wrapLeft = new St.Widget({x_expand: true, y_expand: true,
