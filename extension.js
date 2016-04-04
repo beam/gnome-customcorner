@@ -34,7 +34,10 @@ function init() {}
 function _activateCorner(corner) {
     switch (settings.get_string(corner)) {
         case 'Show Overview':
-        Main.overview.toggle();
+        showOverview(false);
+        break;
+        case 'Show Apps Grid':
+        showOverview(true);
         break;
         case 'Show Desktop':
         showDesktop();
@@ -44,6 +47,17 @@ function _activateCorner(corner) {
         break;
         case 'Run Command...':
         runCommand(settings.get_string(corner.replace(/action$/g, 'command')));
+    }
+}
+
+function showOverview(showApps) {
+    let appsButton = Main.overview.viewSelector._showAppsButton;
+    if (Main.overview.visible && appsButton.checked === showApps) {
+        // Already in desired state, so hide overview
+        Main.overview.hide();
+    } else {
+        Main.overview.show();
+        appsButton.checked = showApps;
     }
 }
 

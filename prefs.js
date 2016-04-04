@@ -9,10 +9,11 @@ const Extension = imports.misc.extensionUtils.getCurrentExtension();
 const ACTIONS = {
     '[No Action]': 0,
     'Show Overview': 1,
-    'Show Desktop': 2,
-    'Open Application...': 3,
-    'Run Command...': 4,
-    'GNOME Default': 5
+    'Show Apps Grid': 2,
+    'Show Desktop': 3,
+    'Open Application...': 4,
+    'Run Command...': 5,
+    'GNOME Default': 6
 };
 
 // Grid positions for various UI elements:
@@ -90,7 +91,6 @@ const CustomCornerSettingsWidget = new GObject.Class({
                 action: Gtk.FileChooserAction.OPEN
             });
 
-            // TODO: Not working?
             this._choosers[c].set_current_folder('/usr/share/applications/');
 
             let cSave = c;
