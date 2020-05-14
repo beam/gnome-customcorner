@@ -65,7 +65,7 @@ let _toRestore = {};
 let _toActivate = {};
 
 function showDesktop() {
-    const wspace = global.screen.get_active_workspace();
+    const wspace = global.workspace_manager.get_active_workspace();
     const windows = wspace.list_windows();
 
     // These are the window types which should be minimized in ordder to show
